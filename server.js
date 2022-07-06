@@ -1,6 +1,9 @@
 const express = require('express')  //I'm using express, so I require expresss
 const app = express()  //Instead of typing express, I'm typing app
 const PORT = 8000
+const cors = require('cors')
+
+app.use(cors())
 
 const countries ={
     "argentina":{
