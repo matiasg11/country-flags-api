@@ -1,15 +1,16 @@
 {
   "name": "country-flags-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "An API to get country flags",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Matias Guarnera",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.1",
-    "heroku": "^7.62.0"
+    "heroku": "^7.3.0"
   }
 }
