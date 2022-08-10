@@ -205,7 +205,7 @@ const countries = {
     russia: new Flag('Russia','Rusia','ru','Europa'),
     rwanda: new Flag('Rwanda','Ruanda','rw','Africa'),
     saint_barthélemy: new Flag('Saint Barthélemy','San Bartolomé','bl','América'),
-    saint_helena,_ascension_and_tristan_da_cunha: new Flag('Saint Helena, Ascension and Tristan da Cunha','Santa Elena, Ascensión y Tristán de Acuña','sh','Africa'),
+    saint_helena_ascension_and_tristan_da_cunha: new Flag('Saint Helena, Ascension and Tristan da Cunha','Santa Elena, Ascensión y Tristán de Acuña','sh','Africa'),
     saint_kitts_and_nevis: new Flag('Saint Kitts and Nevis','San Cristóbal y Nieves','kn','América'),
     saint_lucia: new Flag('Saint Lucia','Santa Lucía','lc','América'),
     saint_martin: new Flag('Saint Martin','San Martín (Francia)','mf','América'),
