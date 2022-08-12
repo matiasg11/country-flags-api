@@ -1,0 +1,34 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Country Flags API</title>
+  </head>
+
+  <body>
+    <h1>Welcome to the Country Flags API </h1>
+    <h2> Flags! </h2>
+
+<ul class="flags">
+  <!-- Loop through quotes -->
+  <% for(var i = 0; i < info.length; i++) {%>
+    <li class="flags">
+      <!-- Output name from the iterated quote object -->
+      <span><%= info[i].countryName %></span>:
+      <!-- Output quote from the iterated quote object -->
+      <span><%= info[i].shortName %></span>
+      <img src=/flags/svg/<%= info[i].shortName %>.svg>
+    </li>
+  <% } %>
+</ul>
+
+    <form action="/flags" method="POST">
+      <input type="text" placeholder="Country Name" name="countryName" />
+      <input type="text" placeholder="Code" name="shortName" />
+      <button type="submit">Submit</button>
+    </form>
+
+    
+  </body>
+</html>
