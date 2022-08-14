@@ -291,7 +291,7 @@ const countries = {
 "zimbabwe": new Flag('Zimbabwe','Zimbabue','zw','Africa'),
 
 
-    blank: new Flag('blank', 'vz'),
+    "blank": new Flag('blank', 'vz'),
 
 }
 
