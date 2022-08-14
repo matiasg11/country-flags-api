@@ -14,10 +14,10 @@
   <!-- Loop through quotes -->
   <% for(var i = 0; i < info.length; i++) {%>
     <li class="flags">
-      <!-- Output name from the iterated quote object -->
+      
       <span><%= info[i].countryName %></span>:
-      <!-- Output quote from the iterated quote object -->
-      <span><%= info[i].shortName %></span>
+      
+      <!-- <span><%= info[i].shortName %></span> -->
       <img src=/flags/svg/<%= info[i].shortName %>.svg>
     </li>
   <% } %>

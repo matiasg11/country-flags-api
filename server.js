@@ -13,26 +13,26 @@ const express = require('express')  //Tell the server to use express
 const app = express()               //Set app equal to express to simplify the sintaxis.
 const PORT = 8000  //Set the port to 8000
 const cors = require('cors')
-const MongoClient = require('mongodb').MongoClient
+// const MongoClient = require('mongodb').MongoClient
 require('dotenv').config()
 
 app.use(cors())
-let db,
-    dbConnectionStr = "mongodb+srv://matiasg11:asdqwe11@cluster0.rlfbyfp.mongodb.net/?retryWrites=true&w=majority" //process.env.DB_STRING,
-    dbName = 'FlagsForApi'
+// let db,
+//     dbConnectionStr = "mongodb+srv://:@cluster0.rlfbyfp.mongodb.net/?retryWrites=true&w=majority" //process.env.DB_STRING,
+//     dbName = 'FlagsForApi'
     
-    MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
-        console.log(`Connected to ${dbName} Database`)
-        db = client.db(dbName);
-        dbCol = db.collection('flags')
+//     MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+//     .then(client => {
+//         console.log(`Connected to ${dbName} Database`)
+//         db = client.db(dbName);
+//         dbCol = db.collection('flags')
        
-    })
+//     })
 
-    app.set('view engine', 'ejs')
-    app.use(express.static('public'))
-    app.use(express.urlencoded({ extended: true }))
-    app.use(express.json())
+//     app.set('view engine', 'ejs')
+//     app.use(express.static('public'))
+//     app.use(express.urlencoded({ extended: true }))
+//     app.use(express.json())
 
 const countries = {
     "afghanistan": new Flag('Afghanistan','Afganistán','af','Asia'),
@@ -295,17 +295,17 @@ const countries = {
 
 }
 
-// app.get('/', (request, response)=>{  //First we need to get an HTML file. That's what the root is telling us. Then we have a request and a response.
-//     response.sendFile(__dirname + '/index.html')      //I want the response to send a file. First we look for the file index.html in the same folder where the server.js file is. 
-// })
-
-app.get('/',(request, response)=>{
-    db.collection('flags').find().toArray()
-    .then(data => {
-        response.render('index.ejs', { info: data })
-    })
-    .catch(error => console.error(error))
+app.get('/', (request, response)=>{  //First we need to get an HTML file. That's what the root is telling us. Then we have a request and a response.
+    response.sendFile(__dirname + '/index.html')      //I want the response to send a file. First we look for the file index.html in the same folder where the server.js file is. 
 })
+
+// app.get('/',(request, response)=>{
+//     db.collection('flags').find().toArray()
+//     .then(data => {
+//         response.render('index.ejs', { info: data })
+//     })
+//     .catch(error => console.error(error))
+// })
 
 app.get('/api/:countryName', (request, response)=>{
     const countryReq = request.params.countryName.toLowerCase()
@@ -318,13 +318,13 @@ app.get('/api/:countryName', (request, response)=>{
 
 
 
-app.post('/flags', (req, res) => {
-    dbCol.insertOne(req.body)
-      .then(result => {
-        res.redirect('/')
-      })
-      .catch(error => console.error(error))
-  })
+// app.post('/flags', (req, res) => {
+//     dbCol.insertOne(req.body)
+//       .then(result => {
+//         res.redirect('/')
+//       })
+//       .catch(error => console.error(error))
+//   })
 
 app.listen(process.env.PORT || PORT, ()=>{  //It chooses the port from the environment (Heroku) or the one we set for it
     console.log(`The server is running on port ${PORT}!`)
