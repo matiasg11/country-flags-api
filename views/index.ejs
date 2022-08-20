@@ -3,31 +3,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css">
     <title>Country Flags API</title>
   </head>
 
   <body>
     <h1>Welcome to the Country Flags API </h1>
-    <h2> Flags! </h2>
+    <h2>Ask for your Flags! </h2>
+
+    <form action="/api/" method="GET">
+      <input type="text" placeholder="Country Name" name="countryName">
+      <button type="submit">ASK!</button>
+  </form>
+  <p>The response is an object with 3 properties:
+    <ul>
+      <li>countryName, which is the name of the country in English</li>
+      <li>shortName, which is the 2 letter code (or similar)</li>
+      <li>an image, which is located in <strong>src=/flags/svg/shortName.svg</strong></li>
+    </ul>
+  </p>
+
+  <h2>This is for me, to add new flags</h2>
+    <form action="/flags" method="POST">
+      <input type="text" placeholder="Country Name" name="countryName" />
+      <input type="text" placeholder="Code" name="shortName" />
+      <button type="submit">Submit</button>
+    </form>
+
+
 
 <ul class="flags">
   <!-- Loop through quotes -->
   <% for(var i = 0; i < info.length; i++) {%>
     <li class="flags">
       
-      <span><%= info[i].countryName %></span>:
+      <h3><%= info[i].countryName %>: <%= info[i].shortName %></h3>
       
-      <!-- <span><%= info[i].shortName %></span> -->
       <img src=/flags/svg/<%= info[i].shortName %>.svg>
     </li>
   <% } %>
 </ul>
 
-    <form action="/flags" method="POST">
-      <input type="text" placeholder="Country Name" name="countryName" />
-      <input type="text" placeholder="Code" name="shortName" />
-      <button type="submit">Submit</button>
-    </form>
+    
 
     
   </body>

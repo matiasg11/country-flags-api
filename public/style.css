@@ -1,0 +1,25 @@
+img{
+    width: 300px; 
+    height: auto;
+
+}
+body{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+p{
+    font-size:1.2 em
+}
+h1{
+    font-size: 3em;
+}
+h2{
+    font-size: 2em;
+}
+
+h3, span{
+    font-size: 1.5em
+}
+input, button{
+    font-size: 1.5em;
+    width: 30%;
+    max-width: 250px;
+}
