@@ -36,6 +36,47 @@ let db,
     app.use(express.urlencoded({ extended: true }))
     app.use(express.json())
 
+
+
+// app.get('/', (request, response)=>{  //First we need to get an HTML file. That's what the root is telling us. Then we have a request and a response.
+//     response.sendFile(__dirname + '/index.html')      //I want the response to send a file. First we look for the file index.html in the same folder where the server.js file is. 
+// })
+
+app.get('/',(request, response)=>{
+    db.collection('flags').find().sort({_id: -1}).toArray()
+    .then(data => {
+        response.render('index.ejs', { info: data })
+    })
+    .catch(error => console.error(error))
+})
+
+app.get('/api/?countryName=:countryName', (request, response)=>{
+    
+    console.log(request.body.countryName)
+    
+    db.collection('flags').find({countryName: request.body.country}).toArray()
+    .then(data => {
+        response.render('index.ejs', { info: data })
+    })
+    .catch(error => console.error(error))
+})
+
+app.post('/flags', (req, res) => {
+    dbCol.insertOne(req.body)
+      .then(result => {
+        res.redirect('/')
+      })
+      .catch(error => console.error(error))
+  })
+
+app.listen(process.env.PORT || PORT, ()=>{  //It chooses the port from the environment (Heroku) or the one we set for it
+    console.log(`The server is running on port ${PORT}!`)
+})
+
+
+
+
+
 const countries = {
     "afghanistan": new Flag('Afghanistan','Afganistán','af','Asia'),
 "åland islands": new Flag('Åland Islands','Åland','ax','Europa'),
@@ -296,36 +337,3 @@ const countries = {
     "blank": new Flag('blank', 'vz'),
 
 }
-
-// app.get('/', (request, response)=>{  //First we need to get an HTML file. That's what the root is telling us. Then we have a request and a response.
-//     response.sendFile(__dirname + '/index.html')      //I want the response to send a file. First we look for the file index.html in the same folder where the server.js file is. 
-// })
-
-app.get('/',(request, response)=>{
-    db.collection('flags').find().sort({_id: -1}).toArray()
-    .then(data => {
-        response.render('index.ejs', { info: data })
-    })
-    .catch(error => console.error(error))
-})
-
-app.get('/api/:countryName', (request, response)=>{
-    country = request
-    db.collection('flags').find({countryName:country}).toArray()
-    .then(data => {
-        response.render('index.ejs', { info: data })
-    })
-    .catch(error => console.error(error))
-})
-
-app.post('/flags', (req, res) => {
-    dbCol.insertOne(req.body)
-      .then(result => {
-        res.redirect('/')
-      })
-      .catch(error => console.error(error))
-  })
-
-app.listen(process.env.PORT || PORT, ()=>{  //It chooses the port from the environment (Heroku) or the one we set for it
-    console.log(`The server is running on port ${PORT}!`)
-})
