@@ -50,11 +50,11 @@ app.get('/',(request, response)=>{
     .catch(error => console.error(error))
 })
 
-app.get('/api/?countryName=:countryName', (request, response)=>{
+app.get('/api/:countryName', (request, response)=>{
     
-    console.log(request.body.countryName)
+    console.log(request.params.countryName)
     
-    db.collection('flags').find({countryName: request.body.country}).toArray()
+    db.collection('flags').find({countryName: request.params.countryName}).toArray()
     .then(data => {
         response.render('index.ejs', { info: data })
     })
@@ -72,9 +72,6 @@ app.post('/flags', (req, res) => {
 app.listen(process.env.PORT || PORT, ()=>{  //It chooses the port from the environment (Heroku) or the one we set for it
     console.log(`The server is running on port ${PORT}!`)
 })
-
-
-
 
 
 const countries = {
